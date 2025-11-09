@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GoSri - Solusi travel mahasiswa untuk perjalanan cepat, aman, dan terjangkau ke kampus UNSRI dan sekitarnya." />
+  <meta name="keywords" content="travel mahasiswa, UNSRI, transportasi, aplikasi travel, Indralaya" />
+  <title>GoSri - Solusi Travel Mahasiswa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      background-color: #fffbea;
+      color: #333;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: transparent;
+      color: #333;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header.scrolled {
+      background-color: #ffe156;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+        height: 65px;
+        width: auto;
+        display: block;
+        margin-left: 10px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 25px; 
+      margin-right: 40px; 
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffa41b;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 580px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+      padding: 0 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .cta-btn {
+      background-color: #ffa41b;
+      color: white;
+      padding: 14px 40px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 20px;
+      transition: background 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+
+    .cta-btn:hover {
+      background-color: #ff8c00;
+      transform: translateY(-3px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      max-width: 950px;
+      margin: 100px auto 60px;
+      padding: 60px 30px;
+      text-align: center;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 1s ease;
+    }
+
+    .section h2 {
+      margin-bottom: 30px;
+      color: #ffa41b;
+      font-size: 32px;
+    }
+
+    .fitur-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .fitur-card {
+      background-color: #ffe156;
+      padding: 50px 30px;
+      border-radius: 14px;
+      font-size: 19px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .fitur-card:hover {
+      transform: translateY(-5px);
+      background-color: #ffd93d;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .fitur-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .testimoni {
+      background-color: #fff3b0;
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .testimoni h2 {
+      color: #ffa41b;
+      margin-bottom: 50px;
+      font-size: 32px;
+    }
+
+    .testimoni-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .testimoni-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 320px;
+      transition: transform 0.3s;
+    }
+
+    .testimoni-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimoni-card p {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .testimoni-card h4 {
+      color: #ffa41b;
+      margin-top: 10px;
+    }
+
+    .download-section {
+      text-align: center;
+      padding: 70px 20px;
+      background-color: white;
+    }
+
+    .download-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+    }
+
+    .store-buttons img {
+      width: 160px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .store-buttons img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #ffe156;
+      text-align: center;
+      padding: 60px 20px;
+      color: #333;
+    }
+
+    footer h2 {
+      color: #ffa41b;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    footer p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .social-icons {
+      margin: 20px 0;
+    }
+
+    .social-icons img {
+      width: 32px;
+      margin: 0 8px;
+      transition: transform 0.3s;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    @media (max-width: 480px) {
+      .section {
+        margin: 80px auto 40px;
+        padding: 40px 20px;
+      }
+
+      .testimoni, .download-section {
+        padding: 50px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+    <img src="GoSri_Logo.png" alt="Logo GoSri">
+        </div>
+    <nav>
+      <a href="#about">Tentang</a>
+      <a href="#fitur">Fitur</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="https://i.pinimg.com/1200x/84/80/8f/84808fe69de6ccda7bbd424bd90ffd76.jpg" alt="Latar belakang GoSri menampilkan pemandangan perjalanan" class="hero-bg" />
+    <div class="hero-content">
+      <h1>Solusi Travel Mahasiswa yang Nyaman & Terjangkau</h1>
+      <p>GoSri membantu mahasiswa menemukan transportasi cepat, aman, dan hemat untuk perjalanan menuju kampus UNSRI dan sekitarnya.</p>
+      <a href="#download" class="cta-btn">Download Aplikasi GoSri</a>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2>Tentang GoSri</h2>
+    <p><strong>GoSri</strong> adalah platform digital yang memudahkan mahasiswa Universitas Sriwijaya (Unsri) 
+        dan masyarakat sekitarnya dalam mencari serta memilih layanan travel terbaik. Melalui GoSri, pengguna dapat dengan mudah 
+        membandingkan jadwal, rute, dan harga berbagai penyedia travel secara praktis dan efisien. 
+        Dengan tampilan yang sederhana namun informatif, GoSri hadir untuk memberikan pengalaman
+        pemesanan travel yang cepat, aman, dan terpercaya, sehingga perjalanan menjadi lebih nyaman dan terencana.</p>
+  </section>
+
+  <section id="fitur" class="section">
+    <h2>Fitur Unggulan GoSri</h2>
+    <div class="fitur-grid">
+      <div class="fitur-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3202/3202926.png" alt="Ikon kemudahan penggunaan" />
+        <h3>Mudah Digunakan</h3>
+        <p>Antarmuka sederhana dan mudah dipahami oleh mahasiswa dan pengemudi.</p>
+      </div>
+      <div class="fitur-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/854/854894.png" alt="Ikon desain responsif" />
+        <h3>Desain Responsif</h3>
+        <p>Tampilan yang tetap nyaman di laptop, tablet, maupun ponsel Anda.</p>
+      </div>
+      <div class="fitur-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2170/2170153.png" alt="Ikon harga terjangkau" />
+        <h3>Harga Terjangkau</h3>
+        <p>Biaya perjalanan hemat dan sesuai dengan kebutuhan mahasiswa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimoni" class="testimoni">
+    <h2>Apa Kata Pengguna Kami</h2>
+    <div class="testimoni-container">
+      <div class="testimoni-card">
+        <p>“GoSri benar-benar ngebantu aku banget. Aku bisa sering pergi ke Palembang atau Indralaya tanpa perlu pusing chat semua supir travel.”</p>
+        <h4>— Sinta, Mahasiswa</h4>
+      </div>
+      <div class="testimoni-card">
+        <p>“Sistemnya gampang dipakai dan dengan adanya fitur nego harga, aku bisa menyesuaikan budget yang ada.”</p>
+        <h4>— Raka, Mahasiswa</h4>
+      </div>
+      <div class="testimoni-card">
+        <p>“Aplikasi ini solusi banget buat anak kos yang butuh transportasi cepat dan aman.”</p>
+        <h4>— Della, Mahasiswa</h4>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="download-section">
+    <h3>Unduh Aplikasi GoSri Sekarang</h3>
+    <div class="store-buttons">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Unduh di Google Play Store" />
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Unduh di App Store" />
+    </div>
+  </section>
+
+  <footer id="kontak">
+    <h2>Hubungi Kami</h2>
+    <p><strong>Telepon:</strong> 081234567890</p>
+    <p><strong>Email:</strong> infogosri@gmail.com</p>
+    <p><strong>Alamat Kantor:</strong> Jl. Raya Indralaya No.12, Ogan Ilir, Sumatera Selatan</p>
+
+    <div class="social-icons">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png" alt="Ikuti kami di Instagram" />
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384005.png" alt="Ikuti kami di Facebook" />
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384017.png" alt="Ikuti kami di X" />
+    </div>
+  </footer>
+</body>
+</html>
